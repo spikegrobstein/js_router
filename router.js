@@ -16,19 +16,7 @@ var Router = {
 	},
 	
 	route: function(request) {
-		if (!request.length) { return; }
-		request = request.split('/'); // break the request into elements based on / (ie: /downloads/my_app => [ 'downloads', 'my_app' ])
-		var element = $('#' + request[0] + '.section'); // find the base element
-
-		// if an element was found, then
-		// hide other sections and show the selected one.
-		if (element) {
-
-			Router.hide_sections(element);
-			element.show();
-		}
-		
-		//console.log(request);
+		throw "You need to override the Request.route() function, dude.";
 	},
 
 	parse: function(href) {
