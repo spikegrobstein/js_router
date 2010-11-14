@@ -92,24 +92,24 @@ MappingRouter.prototype.request_to_array = function(request) {
 }
 
 /*
-**
+**	takes the result of the map() function and calls the proper action in this.controller_bundle
 */
 MappingRouter.prototype.route = function(request) {
 	var params = this.map(request);
 	var controller = this.controller_bundle[params['controller']];
 	
+	// make sure that the controller exists
 	if (!controller) {
 		throw "Invalid controller " + params['controller'];
 	}
 	
 	var action = controller[params['action']];
 	
+	// make sure that the action exists
 	if (!action) {
 		throw "Invalid action (" + params['action'] + ") for controller " + params['controller'];
 	}
-	
-	//console.warn(params);
-	
-	
+		
+	// call the action with params as an argument.
 	action(params);
 }
