@@ -30,9 +30,9 @@ MappingRouter.prototype.map = function(request) {
 	var action = null;
 	var controller = null;
 	var id = null;
-	var params = null;
+	var params = null;			// leftover params (array)
 	
-	var m = null;
+	var m = null; // our match object
 	
 	// first, let's pull the action off if it exists
 	// action is a suffix after a ;
@@ -65,7 +65,12 @@ MappingRouter.prototype.map = function(request) {
 	}
 	
 	// return a hash
-	return { controller: controller, action: action, id: id, params: params };	
+	return { 
+		controller: controller,
+		action: action,
+		id: id,
+		params: params
+	};	
 }
 
 /*
