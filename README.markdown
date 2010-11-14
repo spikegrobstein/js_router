@@ -2,22 +2,22 @@
 
 The purpose of this project is to provide a simplified interface for handling
 requests in your Javascript application. The methods implemented in this 
-library involve attaching the router to handle every <a> tag on the page
-using jquery's $.live() function. <a> tags that have the href attribute set
+library involve attaching the router to handle every `&lt;a&gt;` tag on the page
+using jquery's `$.live()` function. `&lt;a&gt;` tags that have the href attribute set
 to a value starting with '#' will have the href run through the router.
 
 The library includes 2 classes:
- * RouterCore -- a very simple class which allows you to attach a handler
+ * `RouterCore` -- a very simple class which allows you to attach a handler
      for the request.
- * MappingRouter -- a more advanced class that provides an interface for
+ * `MappingRouter` -- a more advanced class that provides an interface for
      more complex delegation of requests.
 
 a link like this:
- <a href="/about_us">About</a>
+  `<a href="/about_us">About</a>`
 will function like normal
 
 a link like this:
- <a href="#/about_us">About</a>
+  `<a href="#/about_us">About</a>`
 will be processed by the router. the request argument will come through
 as "/about_us"
 
@@ -25,11 +25,11 @@ as "/about_us"
 
 ### RouterCore
 
-var r = new RouterCore(function(request) {
-  // this is the handler for the request
-  // request is the string following the # in the URL
-  alert('You have requested: ' + request);
-});
+    var r = new RouterCore(function(request) {
+      // this is the handler for the request
+      // request is the string following the # in the URL
+      alert('You have requested: ' + request);
+    });
 
 RouterCore's main purpose is to be sub-classed to create more complex handlers
 of requests. MappingRouter is a simple example of what can be accomplished by
@@ -37,29 +37,29 @@ a subclass
 
 ### MappingRouter
 
-var r = new MappingRouter({
-  people: {
-    index: function(request) {
-      console.log(request);
-    },
-    show: function(request) {
-      console.log(request);
-    }
-  },
-  about: {
-    index: function(request) {
-      console.log(request);
-    }
-  },
-  home: {
-    index: function(request) {
-      console.log(request);
-    }
-  }
-}, 'home');
+    var r = new MappingRouter({
+      people: {
+        index: function(request) {
+          console.log(request);
+        },
+        show: function(request) {
+          console.log(request);
+        }
+      },
+      about: {
+        index: function(request) {
+          console.log(request);
+        }
+      },
+      home: {
+        index: function(request) {
+          console.log(request);
+        }
+      }
+    }, 'home');
 
 The above only spits log messages to the console for each request for illustrative
-purposes. The controller_bundle (the first param in the MappingRouter constructor)
+purposes. The `controller_bundle` (the first param in the `MappingRouter` constructor)
 is a hash that's key'd by the controller name. Each item of the hash should contain
 a hash of functions keyed by action name.
 
