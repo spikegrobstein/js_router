@@ -1,8 +1,22 @@
 MappingRouter.prototype = new RouterCore();
 MappingRouter.prototype.constructor = MappingRouter;
 
-function MappingRouter(controller_bundle) {
+/*
+**	controller_bundle: hash
+**	root_controller: string
+** 
+**	controller_bundle is a hash which is key'd by controller name.
+**	each controller can contain actions (default support for index and show)
+**	special controller name 'root' can be used as root controller to handle empty requests (index action)
+**
+**	root_controller (optional) is the name of the controller that will handle empty requests
+*/
+function MappingRouter(controller_bundle, root_controller) {
 	this.controller_bundle = controller_bundle;
+	
+	if (root_controller) {
+		this.controller_bundle['root'] = root_controller;
+	}
 }
 
 /*
