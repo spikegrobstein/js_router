@@ -1,4 +1,4 @@
-JS Router
+# JS Router
 
 The purpose of this project is to provide a simplified interface for handling
 requests in your Javascript application. The methods implemented in this 
@@ -21,9 +21,9 @@ a link like this:
 will be processed by the router. the request argument will come through
 as "/about_us"
 
-Examples and Documentation:
+## Examples and Documentation:
 
-RouterCore
+### RouterCore
 
 var r = new RouterCore(function(request) {
   // this is the handler for the request
@@ -35,7 +35,7 @@ RouterCore's main purpose is to be sub-classed to create more complex handlers
 of requests. MappingRouter is a simple example of what can be accomplished by
 a subclass
 
-MappingRouter
+### MappingRouter
 
 var r = new MappingRouter({
   people: {
