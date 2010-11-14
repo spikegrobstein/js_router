@@ -42,11 +42,7 @@ MappingRouter.prototype.map = function(request) {
 		request = m[1];
 	}
 	
-	// split the action on slashes
-	request = request.split('/');
-	if (request[0] == '') {
-		request.shift(); // leading slash causes empty first element
-	}
+	request = this.request_to_array(request);
 	
 	// prime our vars
 	controller = request.shift();
@@ -72,6 +68,27 @@ MappingRouter.prototype.map = function(request) {
 	return { controller: controller, action: action, id: id, params: params };	
 }
 
+/*
+**	converts the request (as a string) to an array by splitting on '/' and removing empty elements
+*/
+MappingRouter.prototype.request_to_array = function(request) {
+	// split the action on slashes
+	var request_tmp = request.split('/');
+	request = [];
+	
+	// iterate over request_tmp and remove any empty items
+	var i;
+	for (i in request_tmp) {
+		i = request_tmp[i];
+		if (i != '') { request.push(i); }
+	}
+	
+	return request;
+}
+
+/*
+**
+*/
 MappingRouter.prototype.route = function(request) {
 	var params = this.map(request);
 	var controller = this.controller_bundle[params['controller']];
