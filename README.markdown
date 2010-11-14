@@ -1,5 +1,7 @@
 # JS Router
 
+## Summary
+
 The purpose of this project is to provide a simplified interface for handling requests in your Javascript application. The methods implemented in this library involve attaching the router to handle every `<a>` tag on the page using jquery's `$.live()` function. `<a>` tags that have the href attribute set to a value starting with '#' will have the href run through the router.
 
 The library includes 2 classes:
@@ -71,5 +73,4 @@ as can be seen above, the request is parsed in the following way:
 
 anything after the id in the path element is returned as an array in the request keyed as 'params'. For example:
 
- * /people/10/comments/20;blarge => { controller: people, action: blarge, 
-       id: 10, params: [ 'comments', '20' ] }
+ * /people/10/comments/20;blarge => { controller: people, action: blarge, id: 10, params: [ 'comments', '20' ] }
