@@ -1,6 +1,6 @@
 # JS Router
 
-The purpose of this project is to provide a simplified interface for handling requests in your Javascript application. The methods implemented in this library involve attaching the router to handle every `&lt;a&gt;` tag on the page using jquery's `$.live()` function. `&lt;a&gt;` tags that have the href attribute set to a value starting with '#' will have the href run through the router.
+The purpose of this project is to provide a simplified interface for handling requests in your Javascript application. The methods implemented in this library involve attaching the router to handle every `<a>` tag on the page using jquery's `$.live()` function. `<a>` tags that have the href attribute set to a value starting with '#' will have the href run through the router.
 
 The library includes 2 classes:
  * `RouterCore` -- a very simple class which allows you to attach a handler for the request.
