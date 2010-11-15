@@ -28,6 +28,7 @@ function MappingRouter(controller_bundle, root_controller) {
 */
 MappingRouter.prototype.map = function(request) {
 	var query_string = null;
+	var raw_query_string = null;
 	var action = null;
 	var controller = null;
 	var id = null;
@@ -37,7 +38,8 @@ MappingRouter.prototype.map = function(request) {
 	
 	// first, pull apart the entire request into the request and the query_string
 	if (m = request.match(/^([^\?]*)\??(.*)/)) {
-		query_string = m[2].read_querystring();
+		raw_query_string = m[2];
+		query_string = raw_query_string.read_querystring();
 		request = m[1];
 	}
 	
@@ -77,7 +79,8 @@ MappingRouter.prototype.map = function(request) {
 		controller: controller,
 		action: action,
 		id: id,
-		params: params
+		params: params,
+		query_string: raw_query_string
 	};
 	
 	// update request with vars from query_string
