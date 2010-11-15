@@ -25,6 +25,10 @@ function MappingRouter(controller_bundle, root_controller) {
 **	/people/1 : { controller: people, action: show, id: 1 }
 **	/people;new : { controller: people, action: new }
 **	/people/1;edit : { controller: people, :action: edit, id: 1 }
+**
+**	supports query_strings appended to the URL and integrates it into the request
+**	example:
+**		#/users/5?verbose=1&lang=en : { controller: users, action: show, id: 5, verbose: 1, lang: en, query_string: 'verbose=1&lang=en' }
 */
 MappingRouter.prototype.map = function(request) {
 	var query_string = null;
