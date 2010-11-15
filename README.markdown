@@ -26,6 +26,8 @@ will be processed by the router. the request argument will come through as "/abo
       // request is the string following the # in the URL
       alert('You have requested: ' + request);
     });
+    
+    r.boot(); // get the router attached to the page
 
 RouterCore's main purpose is to be sub-classed to create more complex handlers of requests. MappingRouter is a simple example of what can be accomplished by a subclass.
 
@@ -50,7 +52,9 @@ RouterCore's main purpose is to be sub-classed to create more complex handlers o
           console.log(request);
         }
       }
-    }, 'home');
+    }, 'home'); // <= home's index action is default handler for empty requests
+    
+    r.boot(); // get the router attached to the page
 
 The above only spits log messages to the console for each request for illustrative purposes. The `controller_bundle` (the first param in the `MappingRouter` constructor) is a hash that's key'd by the controller name. Each item of the hash should contain a hash of functions keyed by action name.
 
