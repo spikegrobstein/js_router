@@ -1,3 +1,14 @@
+/*
+**	mapping_router.js
+**
+**	classes to simplify delegation from RouterCore
+**
+**	Depends on RouterCore and QueryString
+**
+**	written by Spike Grobstein <spikegrobstein@mac.com>
+**	(c) 2010 Spike Grobstein
+*/
+
 MappingRouter.prototype = new RouterCore();
 MappingRouter.prototype.constructor = MappingRouter;
 
