@@ -27,6 +27,7 @@ function MappingRouter(controller_bundle, root_controller) {
 **	/people/1;edit : { controller: people, :action: edit, id: 1 }
 */
 MappingRouter.prototype.map = function(request) {
+	var query_string = null;
 	var action = null;
 	var controller = null;
 	var id = null;
@@ -34,7 +35,13 @@ MappingRouter.prototype.map = function(request) {
 	
 	var m = null; // our match object
 	
-	// first, let's pull the action off if it exists
+	// first, pull apart the entire request into the request and the query_string
+	if (m = request.match(/^([^\?]*)\??(.*)/)) {
+		query_string = m[2].read_querystring();
+		request = m[1];
+	}
+	
+	// let's pull the action off if it exists
 	// action is a suffix after a ;
 	// ie: /people/1;edit => action == 'edit'
 	if (m = request.match(/^(.+?);(.*)$/)) {
@@ -64,13 +71,25 @@ MappingRouter.prototype.map = function(request) {
 		action = 'show';
 	}
 	
-	// return a hash
-	return { 
+	// set request to everything that's been parsed so far...
+	// next to update it with the query_string params
+	request = { 
 		controller: controller,
 		action: action,
 		id: id,
 		params: params
-	};	
+	};
+	
+	// update request with vars from query_string
+	for (k in query_string) {
+		if (!request[k]) {
+			// only update keys that were not set already (prevents conflicts)
+			request[k] = query_string[k];
+		}
+	}
+	
+	// return a hash
+	return request;
 }
 
 /*
