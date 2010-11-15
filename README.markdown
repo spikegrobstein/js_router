@@ -74,4 +74,10 @@ as can be seen above, the request is parsed in the following way:
 
 anything after the id in the path element is returned as an array in the request keyed as 'params'. For example:
 
- * /people/10/comments/20;blarge => { controller: people, action: blarge, id: 10, params: [ 'comments', '20' ] }
+ * /people/10/comments/20;blarge -- { controller: people, action: blarge, id: 10, params: [ 'comments', '20' ] }
+
+MappingRouter also supports query strings:
+
+ * /people/10?verbose=1&lang=en -- { controller: people, action: show, id: 10, verbose: 1, lang: en, query_string: "/people/10?verbose=1&lang=en" }
+
+The query_string is stored un-parsed as a string as an attribute of the request object. This works even in cases where parsing the query_string fails. In cases where variables are supplied that conflict with any standard properties (ie: action, controller or query_string), they will be ignored.
